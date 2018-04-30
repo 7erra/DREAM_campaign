@@ -1,0 +1,442 @@
+/*%FSM<COMPILE "E:\Dokumente (E)\Arma 3 - Other Profiles\Terra\missions\!unabhängig\scriptedFSM.cfg, conversation">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Conversation_FSM",0,250,36.883522,-375.729309,157.348251,-302.349365,0.000000,"Conversation" \n "FSM"};
+item1[] = {"Dialog_created",4,218,36.974754,-464.568237,157.439468,-391.188293,0.000000,"Dialog created"};
+item2[] = {"Dialog_setup",2,250,37.432243,-546.976746,157.896988,-473.596863,0.000000,"Dialog setup"};
+item3[] = {"Dialog_failed",4,218,36.903038,-287.242493,157.367752,-213.862549,0.000000,"Dialog failed"};
+item4[] = {"Exit",1,250,37.130150,-202.358017,157.594894,-128.978104,0.000000,"Exit"};
+item5[] = {"__nd_Leader",4,218,51.941349,-628.069641,141.941345,-578.069641,0.000000,"2nd Leader"};
+item6[] = {"ok__2nd_Leader",2,250,51.829559,-711.885681,141.829559,-661.885681,0.000000,"ok?" \n "2nd Leader"};
+item7[] = {"next",4,218,51.912010,-809.724304,141.912079,-759.724365,0.000000,"next"};
+item8[] = {"names__Lt___Fotini",-1,26,215.259918,-715.850647,437.115265,-570.103210,0.000000,"names:" \n "Lt.: Fotini Petridis" \n " player" \n "2nd Leader: ""Takis Savalas""" \n ""};
+item9[] = {"ok_response_play",2,250,52.107235,-911.875305,142.107269,-861.875244,0.000000,"ok response" \n "player"};
+item10[] = {"___where_were_we",4,218,-211.326004,-1007.107788,-121.326187,-957.108215,0.000000,"0" \n "where were we"};
+item11[] = {"___what",4,218,51.866653,-1008.585571,141.866470,-958.585999,0.000000,"1" \n "what"};
+item12[] = {"___ofc",4,218,164.712494,-1008.049072,254.712311,-958.049438,0.000000,"2" \n "ofc"};
+item13[] = {"",7,210,-170.203003,-891.593445,-162.203018,-883.593445,0.000000,""};
+item14[] = {"",7,210,205.344437,-892.874756,213.344437,-884.874756,0.000000,""};
+item15[] = {"__nd_how_attack",2,250,-211.094940,-1099.929810,-121.094917,-1049.929810,0.000000,"2nd" \n "how attack"};
+item16[] = {"__nd_spacing_out",2,250,51.612251,-1099.567627,141.612274,-1049.567749,0.000000,"2nd" \n "spacing out" \n "-0.05 skill"};
+item17[] = {"__nd_aight_then",2,250,165.083420,-1101.481689,255.083435,-1051.481689,0.000000,"2nd" \n "aight then" \n "+0.05 skill"};
+item18[] = {"next",4,218,-210.709686,-1185.315063,-120.709610,-1135.315063,0.000000,"next"};
+item19[] = {"next",4,218,-82.888123,-1099.651489,7.111938,-1049.651489,0.000000,"next"};
+item20[] = {"next",4,218,164.812271,-1181.650757,254.812286,-1131.650757,0.000000,"next"};
+item21[] = {"player_response",2,250,-211.142654,-1280.645508,-121.142616,-1230.645386,0.000000,"player" \n "response"};
+item22[] = {"___What_compound",4,218,-211.110992,-1362.215210,-121.111183,-1312.215576,0.000000,"0" \n "What compound"};
+item23[] = {"__nd_what_compound",2,250,-211.830856,-1447.794067,-121.830856,-1397.794067,0.000000,"2nd" \n "what compound" \n "-0.1 skill" \n ""};
+item24[] = {"player_orders",2,4346,162.649200,-1284.636963,252.649216,-1234.636841,0.000000,"player" \n "orders"};
+item25[] = {"___orders",4,218,-34.250381,-1281.336304,55.749435,-1231.336670,0.000000,"1" \n "orders"};
+version=1;
+class LayoutItems
+{
+	class Item8
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			lStyle=1;
+			Align=0;
+		};
+	};
+};
+link0[] = {0,1};
+link1[] = {0,3};
+link2[] = {1,2};
+link3[] = {2,5};
+link4[] = {3,4};
+link5[] = {5,6};
+link6[] = {6,7};
+link7[] = {7,9};
+link8[] = {9,11};
+link9[] = {9,13};
+link10[] = {9,14};
+link11[] = {10,15};
+link12[] = {11,16};
+link13[] = {12,17};
+link14[] = {13,10};
+link15[] = {14,12};
+link16[] = {15,18};
+link17[] = {16,19};
+link18[] = {17,20};
+link19[] = {18,21};
+link20[] = {19,15};
+link21[] = {20,24};
+link22[] = {21,22};
+link23[] = {21,25};
+link24[] = {22,23};
+link25[] = {25,24};
+globals[] = {0.000000,0,0,0,0,640,480,1,32,6316128,1,-364.268036,395.211731,-689.015015,-1780.690063,615,884,1};
+window[] = {2,-1,-1,-1,-1,987,-1738,-298,228,3,633};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "conversation";
+        class States
+        {
+                /*%FSM<STATE "Conversation_FSM">*/
+                class Conversation_FSM
+                {
+                        name = "Conversation_FSM";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"//addaction params" \n
+                         "params [""_target"",""_caller"",""_id"",""_arguments""];" \n
+                         "_arguments params [""_convID""];" \n
+                         "// cam" \n
+                         "_cam = ""camera"" camCreate (position player);" \n
+                         "_cam cameraEffect [""internal"", ""BACK""];" \n
+                         "_cam attachTo [_target,[0,1,1.6]];" \n
+                         "_cam camSetTarget (ASLToAGL (eyePos _target));" \n
+                         "_cam camCommit 0;" \n
+                         "// some vars" \n
+                         "_dialogCreated = createDialog ""TER_RscConversation"";" \n
+                         "TER_convNext = false;" \n
+                         "_fncNext = {" \n
+                         "	params [" \n
+                         "		[""_unit"", player]," \n
+                         "		[""_response"",""""]" \n
+                         "	];" \n
+                         "	_txtAINAME ctrlSetText (name _unit);" \n
+                         "	if (!isPlayer _unit) then {" \n
+                         "		// from player to ai" \n
+                         "		_lbCONVOPTIONS ctrlShow false;" \n
+                         "		_stxtRESPONSE ctrlShow true;" \n
+                         "		_stxtRESPONSE ctrlSetText _response;" \n
+                         "		[_stxtRESPONSE, _unit] spawn {" \n
+                         "			disableSerialization;" \n
+                         "			params [""_stxtRESPONSE"", ""_unit""];" \n
+                         "			_unit setRandomLip true;" \n
+                         "			_words = {_x==32} count (toArray ctrlText _stxtRESPONSE);" \n
+                         "			sleep (_words/2.5);" \n
+                         "			_unit setRandomLip false;" \n
+                         "		};" \n
+                         "		_prevPos = ctrlPosition _stxtRESPONSE;" \n
+                         "		_prevPos set [3,ctrlTextHeight _stxtRESPONSE];" \n
+                         "		_newPos = _prevPos;" \n
+                         "		_stxtRESPONSE ctrlSetPosition _newPos;" \n
+                         "		_stxtRESPONSE ctrlCommit 0;" \n
+                         "		_btnSAY ctrlEnable false;" \n
+                         "		_btnNEXT ctrlEnable true;" \n
+                         "	} else {" \n
+                         "		// from ai to player" \n
+                         "		lbClear _lbCONVOPTIONS;" \n
+                         "		_lbCONVOPTIONS ctrlShow true;" \n
+                         "		_stxtRESPONSE ctrlShow false;" \n
+                         "		_btnSAY ctrlEnable true;" \n
+                         "		_btnNEXT ctrlEnable false;" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Dialog_failed">*/
+                                class Dialog_failed
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="Exit";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!_dialogCreated"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Dialog_created">*/
+                                class Dialog_created
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Dialog_setup";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_dialogCreated"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Dialog_setup">*/
+                class Dialog_setup
+                {
+                        name = "Dialog_setup";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_mainDisplay = findDisplay 73001;" \n
+                         "#define CTRL(VAR,IDC) VAR = _mainDisplay displayCtrl IDC;" \n
+                         "" \n
+                         "CTRL(_btnSAY,2400)" \n
+                         "CTRL(_btnNEXT,2402)" \n
+                         "CTRL(_btnCLOSE,2401)" \n
+                         "CTRL(_lbCONVOPTIONS,1500)" \n
+                         "CTRL(_txtAINAME,1000)" \n
+                         "CTRL(_stxtRESPONSE,1100)" \n
+                         "" \n
+                         "{_x buttonSetAction ""TER_convNext = true""} forEach [_btnSAY, _btnNEXT];" \n
+                         "" \n
+                         "// camera" \n
+                         "_mainDisplay setVariable [""TER_cam"",_cam];" \n
+                         "_mainDisplay displayAddEventhandler [""unload"",{" \n
+                         "	_cam = (_this select 0) getVariable ""TER_cam"";" \n
+                         "	_cam cameraEffect [""terminate"",""back""];" \n
+                         "	camDestroy _cam;" \n
+                         "}];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "__nd_Leader">*/
+                                class __nd_Leader
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="ok__2nd_Leader";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_convID == ""leader2"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Exit">*/
+                class Exit
+                {
+                        name = "Exit";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"_cam cameraEffect [""terminate"",""back""];" \n
+                         "camDestroy _cam;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "ok__2nd_Leader">*/
+                class ok__2nd_Leader
+                {
+                        name = "ok__2nd_Leader";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"_answere = ""Lieutenant? Is everything OK?"";" \n
+                         "[TER_leader2,_answere] call _fncNext;" \n
+                         "" \n
+                         "_addskill = 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "next">*/
+                                class next
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="ok_response_play";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "ok_response_play">*/
+                class ok_response_play
+                {
+                        name = "ok_response_play";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"[] call _fncNext;" \n
+                         "{ _lbCONVOPTIONS lbAdd _x; } forEach [""Yes. Where were we?"",""What?"",""Of course.""];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "___where_were_we">*/
+                                class ___where_were_we
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="__nd_how_attack";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext" \n
+                                         "&&" \n
+                                         "lbCurSel _lbCONVOPTIONS == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "___ofc">*/
+                                class ___ofc
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="__nd_aight_then";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext" \n
+                                         "&&" \n
+                                         "lbCurSel _lbCONVOPTIONS == 2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "___what">*/
+                                class ___what
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="__nd_spacing_out";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext" \n
+                                         "&&" \n
+                                         "lbCurSel _lbCONVOPTIONS == 1"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__nd_how_attack">*/
+                class __nd_how_attack
+                {
+                        name = "__nd_how_attack";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"_answere = ""You were about to give us your orders, sir. How are we supposed to attack the compound?"";" \n
+                         "[TER_leader2,_answere] call _fncNext;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "next">*/
+                                class next
+                                {
+                                        itemno = 18;
+                                        priority = 0.000000;
+                                        to="player_response";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__nd_spacing_out">*/
+                class __nd_spacing_out
+                {
+                        name = "__nd_spacing_out";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/"_answere = ""You seemed to be spacing out, sir. You suddenly stopped talking."";" \n
+                         "[TER_leader2,_answere] call _fncNext;" \n
+                         "" \n
+                         "_addSkill = _addSkill -0.05;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "next">*/
+                                class next
+                                {
+                                        itemno = 19;
+                                        priority = 0.000000;
+                                        to="__nd_how_attack";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__nd_aight_then">*/
+                class __nd_aight_then
+                {
+                        name = "__nd_aight_then";
+                        itemno = 17;
+                        init = /*%FSM<STATEINIT""">*/"_answere = ""So what are your orders then, sir?"";" \n
+                         "[TER_leader2,_answere] call _fncNext;" \n
+                         "" \n
+                         "_addSkill = _addSkill +0.05;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "next">*/
+                                class next
+                                {
+                                        itemno = 20;
+                                        priority = 0.000000;
+                                        to="player_orders";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "player_response">*/
+                class player_response
+                {
+                        name = "player_response";
+                        itemno = 21;
+                        init = /*%FSM<STATEINIT""">*/"[] call _fncNext;" \n
+                         "{ _lbCONVOPTIONS lbAdd _x; } forEach [""What compound?"",""Sure.""];"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "___orders">*/
+                                class ___orders
+                                {
+                                        itemno = 25;
+                                        priority = 0.000000;
+                                        to="player_orders";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext" \n
+                                         "&&" \n
+                                         "lbCurSel _lbCONVOPTIONS == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "___What_compound">*/
+                                class ___What_compound
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="__nd_what_compound";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"TER_convNext" \n
+                                         "&&" \n
+                                         "lbCurSel _lbCONVOPTIONS == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/"TER_convNext = false;"/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__nd_what_compound">*/
+                class __nd_what_compound
+                {
+                        name = "__nd_what_compound";
+                        itemno = 23;
+                        init = /*%FSM<STATEINIT""">*/"_answere = ""The one we are tasked to attack? Take a look at your map. It is about one click from here to the north-west."";" \n
+                         "[TER_leader2,_answere] call _fncNext;" \n
+                         "" \n
+                         "_addSkill = _addSkill -0.1;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "player_orders">*/
+                class player_orders
+                {
+                        name = "player_orders";
+                        itemno = 24;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Conversation_FSM";
+        finalStates[] =
+        {
+                "Exit",
+        };
+};
+/*%FSM</COMPILE>*/

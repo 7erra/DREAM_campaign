@@ -1,0 +1,15 @@
+// C1M1 CONFIG
+#include "..\..\general\description.hpp"
+
+class CfgDebriefing
+{
+	class FAIL_domeLeft
+	{
+		title = "You left the dome";
+		subtitle = "";
+		description = "Mission ended";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0,0,0};
+	};
+};

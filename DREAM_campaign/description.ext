@@ -1,0 +1,43 @@
+// CAMPAIGN CONFIG
+class NoEndings
+{
+	end1 = ;
+	end2 = ;
+	end3 = ;
+	end4 = ;
+	end5 = ;
+	end6 = ;
+	lost = ;
+};
+class MissionDefault : NoEndings
+{
+	lives = -1;
+	cutscene	= ;   // mandatory definition
+};
+
+class Campaign // this is a reference class and the name cannot be customised
+{
+	firstBattle	= curing_in; // which chapter should be loaded first. MUST be declared!
+
+	briefingName = "In sanity we trust";		// since Arma 3 - if undefined, an error popup will appear
+	author = "7erra"; // since Arma 3 - if undefined, "by unknown community author" will replace author's name
+	overviewPicture = "";
+	overviewText = "A campaign that takes you beyond your own mind.";
+	disableMP = 1; // since Arma 2 - if set to 1, forces the campaign as SinglePlayer
+
+	class curing_in: NoEndings // name can be customised here - it will be used as reference, in firstBattle for example
+	{
+		firstMission	= Subject1;		// which mission should be loaded first. MUST be declared!
+		name		= "subject1";	// chapter name. Has no in-game impact
+		cutscene	= ;	// missions sub-directory. A cutscene is of course optional but the parameter MUST be declared (cutscene = ;)
+
+		class Subject1: MissionDefault // name, such as chapter one, can be customised
+		{
+			template = c1m1.Altis; // missions sub-directory
+		};
+		class Subject2: MissionDefault // name, such as chapter one, can be customised
+		{
+			template = c1m2.Altis; // missions sub-directory
+		};
+	};
+};

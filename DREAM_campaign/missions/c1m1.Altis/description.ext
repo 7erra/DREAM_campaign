@@ -1,0 +1,33 @@
+// C1M1 CONFIG
+#include "..\..\general\description.hpp"
+
+class CfgDebriefing
+{
+	class FAIL_domeLeft
+	{
+		title = "You left the dome";
+		subtitle = "";
+		description = "Mission ended";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0,0,0};
+	};
+	class FAIL_rudeConv
+	{
+		title = "Kicked out of base";
+		subtitle = "What did you expect?";
+		description = "Sometimes you need to live with your elbows out but apparently not now.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0,0,0};
+	};
+	class WIN_startMinddive
+	{
+		title = "Minddive started";
+		subtitle = "Slowly drifting into the abyss";
+		description = "You introduced yourself to the other participants in this story and began your actual mission.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0,0,0};
+	};
+};

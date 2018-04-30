@@ -1,0 +1,9 @@
+#define MAINDISPLAY (findDisplay 73001)
+#define CTRL(IDC) (MAINDISPLAY displayCtrl IDC)
+
+#define BTN_SAY CTRL(2400)
+#define BTN_NEXT CTRL(2402)
+#define BTN_CLOSE CTRL(2401)
+#define LB_CONVOPTIONS CTRL(1500)
+#define TXT_AINAME CTRL(1000)
+#define STXT_RESPONSE CTRL(1100)
