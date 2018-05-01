@@ -33,4 +33,13 @@ Spieler erwacht, ex wird im labor erschossen, spieler nach hause. Dort angriff v
 Spieler erwacht, ex lügt, alles gut blabla. Spieler nach hause, dort angriff von ION, die den ex suchen. Nach Kampf anruf von...
 
 4a: "flucht vor ex's verbündeten"
-Doktor (c1m1) ............
+Doktor (c1m1). Spieler muss es bis zum zentralen Flughafen schaffen. Flug nach Malden.
+
+4b: "flucht vor militär"
+Spieler muss es zum einem airstrip schaffen, dort flug nach Malden.
+
+---
+Kapitel III: Nightmare
+---
+
+
